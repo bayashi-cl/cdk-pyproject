@@ -1,7 +1,5 @@
 import importlib.resources
 import os.path
-import tempfile
-from pathlib import Path
 from typing import Self
 
 from aws_cdk import BundlingOptions, DockerImage, aws_lambda
