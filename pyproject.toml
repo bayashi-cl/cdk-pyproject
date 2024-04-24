@@ -1,17 +1,18 @@
 [project]
 name = "cdk-pyproject"
-version = "0.1.2"
+version = "0.2.0"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
 dependencies = ["aws-cdk-lib>=2.138.0", "pyproject-metadata>=0.8.0"]
 readme = "README.md"
-requires-python = ">= 3.12"
+requires-python = ">= 3.11"
 
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
 
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 
     "Framework :: AWS CDK",
@@ -27,7 +28,13 @@ build-backend = "hatchling.build"
 
 [tool.rye]
 managed = true
-dev-dependencies = []
+dev-dependencies = [
+    "tox-rye @ git+https://github.com/bluss/tox-rye",
+    "virtualenv-rye-discovery @ git+https://github.com/bluss/virtualenv-rye-discovery@0.3.0",
+    "tox>=4.14.2",
+    "pytest>=8.1.1",
+    "mypy>=1.10.0",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -47,3 +54,6 @@ ignore = ["D", "ANN101", "ANN102"]
 
 [tool.mypy]
 strict = true
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::SyntaxWarning"]

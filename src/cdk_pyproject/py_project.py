@@ -1,9 +1,9 @@
 import importlib.resources
 import os.path
-import tomllib
 from pathlib import Path
 from typing import Self
 
+import tomllib
 from aws_cdk import BundlingOptions, DockerImage, aws_lambda
 from pyproject_metadata import StandardMetadata
 
@@ -45,7 +45,7 @@ class PyProject:
         metadata = StandardMetadata.from_pyproject(tomllib.loads(pyproject.read_text()))
         return metadata.name
 
-    def code(self, project: str | None) -> aws_lambda.Code:
+    def code(self, project: str | None = None) -> aws_lambda.Code:
         if project is None:
             project = self.get_root_project_name()
 
