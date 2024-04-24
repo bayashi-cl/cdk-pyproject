@@ -31,6 +31,8 @@ jsii==1.97.0
     # via aws-cdk-asset-node-proxy-agent-v6
     # via aws-cdk-lib
     # via constructs
+packaging==24.0
+    # via pyproject-metadata
 publication==0.0.3
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
@@ -38,6 +40,8 @@ publication==0.0.3
     # via aws-cdk-lib
     # via constructs
     # via jsii
+pyproject-metadata==0.8.0
+    # via cdk-pyproject
 python-dateutil==2.9.0.post0
     # via jsii
 six==1.16.0

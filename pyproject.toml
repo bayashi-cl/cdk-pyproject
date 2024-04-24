@@ -2,7 +2,10 @@
 name = "cdk-pyproject"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
-dependencies = ["aws-cdk-lib>=2.138.0"]
+dependencies = [
+    "aws-cdk-lib>=2.138.0",
+    "pyproject-metadata>=0.8.0",
+]
 readme = "README.md"
 requires-python = ">= 3.12"
 dynamic = ["version"]
@@ -17,6 +20,7 @@ classifiers = [
     "Framework :: AWS CDK",
     "Framework :: AWS CDK :: 2",
 ]
+version = "0.1.2"
 
 [project.urls]
 "Source" = "https://github.com/bayashi-cl/cdk-pyproject/"
