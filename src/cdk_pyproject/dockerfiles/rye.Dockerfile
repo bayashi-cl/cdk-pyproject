@@ -7,8 +7,8 @@ FROM ${IMAGE}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /workspace
 
-ENV RYE_HOME "/opt/rye"
-ENV PATH "${RYE_HOME}/shims:${PATH}"
+ENV RYE_HOME="/opt/rye"
+ENV PATH="${RYE_HOME}/shims:${PATH}"
 RUN curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
 
 RUN --mount=type=cache,target=/root/.cache/pip \
