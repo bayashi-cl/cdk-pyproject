@@ -16,9 +16,14 @@ def test_build(target: Path) -> None:
     class TestStack(Stack):
         def __init__(self, scope: Construct, construct_id: str) -> None:
             super().__init__(scope, construct_id)
-            runtime = aws_lambda.Runtime.PYTHON_3_12
 
-            project = PyProject.from_pyproject(str(target), runtime=runtime)
-            aws_lambda.Function(self, "TestLambda", code=project.code(), handler="dummy.handler", runtime=runtime)
+            project = PyProject.from_pyproject(str(target))
+            aws_lambda.Function(
+                self,
+                "TestLambda",
+                code=project.code(),
+                handler="dummy.handler",
+                runtime=project.runtime,
+            )
 
     TestStack(App(), TestStack.__name__)
