@@ -6,8 +6,11 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
+argcomplete==3.4.0
+    # via nox
 attrs==23.2.0
     # via cattrs
     # via jsii
@@ -19,20 +22,15 @@ aws-cdk-asset-node-proxy-agent-v6==2.0.3
     # via aws-cdk-lib
 aws-cdk-lib==2.138.0
     # via cdk-pyproject
-cachetools==5.3.3
-    # via tox
 cattrs==23.2.3
     # via jsii
-chardet==5.2.0
-    # via tox
-colorama==0.4.6
-    # via tox
+colorlog==6.8.2
+    # via nox
 constructs==10.3.0
     # via aws-cdk-lib
 distlib==0.3.8
     # via virtualenv
 filelock==3.13.4
-    # via tox
     # via virtualenv
 importlib-resources==6.4.0
     # via jsii
@@ -47,17 +45,15 @@ jsii==1.97.0
 mypy==1.10.0
 mypy-extensions==1.0.0
     # via mypy
+nox==2024.4.15
 packaging==24.0
-    # via pyproject-api
+    # via nox
     # via pyproject-metadata
     # via pytest
-    # via tox
 platformdirs==4.2.1
-    # via tox
     # via virtualenv
 pluggy==1.5.0
     # via pytest
-    # via tox
 publication==0.0.3
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
@@ -65,17 +61,14 @@ publication==0.0.3
     # via aws-cdk-lib
     # via constructs
     # via jsii
-pyproject-api==1.6.1
-    # via tox
 pyproject-metadata==0.8.0
     # via cdk-pyproject
 pytest==8.1.1
 python-dateutil==2.9.0.post0
     # via jsii
+ruff==0.5.0
 six==1.16.0
     # via python-dateutil
-tox==4.14.2
-tox-rye @ git+https://github.com/bluss/tox-rye@d1348e996d642e947cd0fb158ecdbcfe0f386af3
 typeguard==2.13.3
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
@@ -87,7 +80,4 @@ typing-extensions==4.11.0
     # via jsii
     # via mypy
 virtualenv==20.26.0
-    # via tox
-    # via virtualenv-rye-discovery
-virtualenv-rye-discovery @ git+https://github.com/bluss/virtualenv-rye-discovery@4958f87a8fef73a1dddbb02fa3a98c93bab48377
-    # via tox-rye
+    # via nox
