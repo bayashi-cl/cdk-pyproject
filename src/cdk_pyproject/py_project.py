@@ -3,7 +3,7 @@ import os.path
 import sys
 import tomllib
 from pathlib import Path
-from typing import Self, reveal_type
+from typing import Self
 
 from aws_cdk import BundlingOptions, DockerImage, aws_lambda
 from pyproject_metadata import StandardMetadata
