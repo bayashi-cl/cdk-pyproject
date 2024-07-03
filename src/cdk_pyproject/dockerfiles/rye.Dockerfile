@@ -9,7 +9,7 @@ WORKDIR /workspace
 
 ENV RYE_HOME="/opt/rye"
 ENV PATH="${RYE_HOME}/shims:${PATH}"
-RUN curl -sSf https://rye-up.com/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
+RUN curl -sSf https://rye.astral.sh/get | RYE_NO_AUTO_INSTALL=1 RYE_INSTALL_OPTION="--yes" bash
 
 RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.lock,target=requirements.lock \
