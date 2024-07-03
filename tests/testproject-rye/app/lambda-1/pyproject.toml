@@ -2,12 +2,10 @@
 name = "lambda-1"
 version = "0.1.0"
 description = "Add your description here"
-authors = [
-    { name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }
-]
+authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
 dependencies = []
 readme = "README.md"
-requires-python = ">= 3.12"
+requires-python = ">= 3.11"
 
 [build-system]
 requires = ["hatchling"]
