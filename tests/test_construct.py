@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 from aws_cdk import Stack, aws_lambda
-from cdk_pyproject import PyProject
+from cdk_pyproject import PyProject, PyScript
 
 
 def test_pyproject(capsys: pytest.CaptureFixture[str]) -> None:
@@ -42,3 +42,17 @@ def test_rye(capsys: pytest.CaptureFixture[str]) -> None:
     )
     captured = capsys.readouterr()
     assert "Successfully installed lambda-2-0.1.0 peppercorn-0.6" in captured.err
+
+
+def test_script(capsys: pytest.CaptureFixture[str]) -> None:
+    script = PyScript.from_script(str(Path(__file__).with_name("script.py")))
+    assert script.runtime.runtime_equals(aws_lambda.Runtime.PYTHON_3_11)
+    aws_lambda.Function(
+        Stack(),
+        "ScriptLambda",
+        code=script.code(),
+        handler="script.handler",
+        runtime=script.runtime,
+    )
+    captured = capsys.readouterr()
+    assert "Successfully installed" in captured.err
