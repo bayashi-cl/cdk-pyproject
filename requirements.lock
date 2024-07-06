@@ -18,7 +18,7 @@ aws-cdk-asset-kubectl-v20==2.1.2
     # via aws-cdk-lib
 aws-cdk-asset-node-proxy-agent-v6==2.0.3
     # via aws-cdk-lib
-aws-cdk-lib==2.138.0
+aws-cdk-lib==2.148.0
     # via cdk-pyproject
 cattrs==23.2.3
     # via jsii
@@ -26,13 +26,13 @@ constructs==10.3.0
     # via aws-cdk-lib
 importlib-resources==6.4.0
     # via jsii
-jsii==1.97.0
+jsii==1.101.0
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
     # via aws-cdk-asset-node-proxy-agent-v6
     # via aws-cdk-lib
     # via constructs
-packaging==24.0
+packaging==24.1
     # via pyproject-metadata
 publication==0.0.3
     # via aws-cdk-asset-awscli-v1
@@ -54,5 +54,5 @@ typeguard==2.13.3
     # via aws-cdk-lib
     # via constructs
     # via jsii
-typing-extensions==4.11.0
+typing-extensions==4.12.2
     # via jsii

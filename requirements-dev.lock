@@ -20,7 +20,7 @@ aws-cdk-asset-kubectl-v20==2.1.2
     # via aws-cdk-lib
 aws-cdk-asset-node-proxy-agent-v6==2.0.3
     # via aws-cdk-lib
-aws-cdk-lib==2.138.0
+aws-cdk-lib==2.148.0
     # via cdk-pyproject
 cattrs==23.2.3
     # via jsii
@@ -30,27 +30,27 @@ constructs==10.3.0
     # via aws-cdk-lib
 distlib==0.3.8
     # via virtualenv
-filelock==3.13.4
+filelock==3.15.4
     # via virtualenv
 importlib-resources==6.4.0
     # via jsii
 iniconfig==2.0.0
     # via pytest
-jsii==1.97.0
+jsii==1.101.0
     # via aws-cdk-asset-awscli-v1
     # via aws-cdk-asset-kubectl-v20
     # via aws-cdk-asset-node-proxy-agent-v6
     # via aws-cdk-lib
     # via constructs
-mypy==1.10.0
+mypy==1.10.1
 mypy-extensions==1.0.0
     # via mypy
 nox==2024.4.15
-packaging==24.0
+packaging==24.1
     # via nox
     # via pyproject-metadata
     # via pytest
-platformdirs==4.2.1
+platformdirs==4.2.2
     # via virtualenv
 pluggy==1.5.0
     # via pytest
@@ -63,10 +63,10 @@ publication==0.0.3
     # via jsii
 pyproject-metadata==0.8.0
     # via cdk-pyproject
-pytest==8.1.1
+pytest==8.2.2
 python-dateutil==2.9.0.post0
     # via jsii
-ruff==0.5.0
+ruff==0.5.1
 six==1.16.0
     # via python-dateutil
 typeguard==2.13.3
@@ -76,8 +76,8 @@ typeguard==2.13.3
     # via aws-cdk-lib
     # via constructs
     # via jsii
-typing-extensions==4.11.0
+typing-extensions==4.12.2
     # via jsii
     # via mypy
-virtualenv==20.26.0
+virtualenv==20.26.3
     # via nox
