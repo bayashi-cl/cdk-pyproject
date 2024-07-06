@@ -7,6 +7,8 @@ from cdk_pyproject import PyProject
 
 def test_pyproject(capsys: pytest.CaptureFixture[str]) -> None:
     project = PyProject.from_pyproject(str(Path(__file__).with_name("testproject")))
+    assert project.runtime.runtime_equals(aws_lambda.Runtime.PYTHON_3_11)
+
     aws_lambda.Function(
         Stack(),
         "TestLambda",
