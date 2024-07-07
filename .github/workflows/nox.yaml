@@ -13,7 +13,7 @@ jobs:
     outputs:
       session: ${{ steps.set-matrix.outputs.session }}
     steps:
-      - uses: actions/checkout@v4
+      - uses:   actions/checkout@v4
       - uses: wntrblm/nox@main
       - id: set-matrix
         shell: bash
