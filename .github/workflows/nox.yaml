@@ -28,4 +28,5 @@ jobs:
         session: ${{ fromJson(needs.generate-jobs.outputs.session) }}
     steps:
       - uses: actions/checkout@v4
+      - uses: wntrblm/nox@main
       - run: nox -s "${{ matrix.session }}"
