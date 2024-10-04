@@ -2,6 +2,7 @@ from pathlib import Path
 
 import pytest
 from aws_cdk import Stack, aws_lambda
+
 from cdk_pyproject import PyProject, PyScript
 
 
