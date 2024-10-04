@@ -29,5 +29,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: wntrblm/nox@main
-      - uses: yezz123/setup-uv@v4
+      - uses: astral-sh/setup-uv@v3
       - run: nox -s "${{ matrix.session }}"

@@ -1,7 +1,8 @@
 import pytest
 from aws_cdk.aws_lambda import Runtime
-from cdk_pyproject.utils import resolve_runtime
 from packaging.specifiers import SpecifierSet
+
+from cdk_pyproject.utils import resolve_runtime
 
 
 @pytest.mark.parametrize("spec", ["==3.11", "==3.11.*", ">=3.11.0,<3.12"])
