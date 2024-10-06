@@ -45,6 +45,30 @@ def test_rye(capsys: pytest.CaptureFixture[str]) -> None:
     assert "Successfully installed lambda-2-0.1.0 peppercorn-0.6" in captured.err
 
 
+def test_uv(capsys: pytest.CaptureFixture[str]) -> None:
+    project = PyProject.from_uv(str(Path(__file__).with_name("testproject-uv")))
+    stack = Stack()
+    aws_lambda.Function(
+        stack,
+        "TestLambda1",
+        code=project.code("lambda-1"),
+        handler="lambda_1.lambda_handler",
+        runtime=project.runtime,
+    )
+    captured = capsys.readouterr()
+    assert "Successfully installed lambda-1-0.1.0" in captured.err
+
+    aws_lambda.Function(
+        stack,
+        "TestLambda2",
+        code=project.code("lambda-2"),
+        handler="lambda_2.lambda_handler",
+        runtime=project.runtime,
+    )
+    captured = capsys.readouterr()
+    assert "Successfully installed lambda-1-0.1.0 lambda-2-0.1.0 peppercorn-0.6" in captured.err
+
+
 def test_script(capsys: pytest.CaptureFixture[str]) -> None:
     script = PyScript.from_script(str(Path(__file__).with_name("script.py")))
     assert script.runtime.runtime_equals(aws_lambda.Runtime.PYTHON_3_11)

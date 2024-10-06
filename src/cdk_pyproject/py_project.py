@@ -48,6 +48,19 @@ class PyProject:
     def from_poetry(cls, path: str, runtime: aws_lambda.Runtime) -> Self:
         raise NotImplementedError
 
+    @classmethod
+    def from_uv(cls, path: str, runtime: aws_lambda.Runtime | None = None) -> Self:
+        metadata = read_pyproject(Path(path))
+        if runtime is None:
+            runtime = runtime_from_metadata(metadata) or runtime_from_sys()
+        image = DockerImage.from_build(
+            path=path,
+            build_args={"IMAGE": runtime.bundling_image.image},
+            file=os.path.relpath(str(_dockerfiles.joinpath("uv.Dockerfile")), start=path),
+        )
+
+        return cls(path, runtime, image, metadata)
+
     def code(self, project: str | None = None) -> aws_lambda.Code:
         if project is None:
             project = self.metadata.name

@@ -1,0 +1,24 @@
+[project]
+name = "testproject-uv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "lambda-1",
+    "lambda-2",
+]
+
+[project.scripts]
+testproject-uv = "testproject_uv:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.workspace]
+members = ["app/lambda-1", "app/lambda-2"]
+
+[tool.uv.sources]
+lambda-1 = { workspace = true }
+lambda-2 = { workspace = true }
