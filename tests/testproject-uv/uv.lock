@@ -1,0 +1,53 @@
+version = 1
+requires-python = ">=3.12"
+
+[manifest]
+members = [
+    "testproject-uv",
+    "uv-lambda-1",
+    "uv-lambda-2",
+]
+
+[[package]]
+name = "peppercorn"
+version = "0.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e4/77/93085de7108cdf1a0b092ff443872a8f9442c736d7ddebdf2f27627935f4/peppercorn-0.6.tar.gz", hash = "sha256:96d7681d7a04545cfbaf2c6fb66de67b29cfc42421aa263e4c78f2cbb85be4c6", size = 16386 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/14/84/d8d9c3f17bda2b6f49406982546d6f6bc0fa188a43d4e3ba9169a457ee04/peppercorn-0.6-py3-none-any.whl", hash = "sha256:46125cad688a9cf3b08e463bcb797891ee73ece93602a8ea6f14e40d1042d454", size = 4796 },
+]
+
+[[package]]
+name = "testproject-uv"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "uv-lambda-1" },
+    { name = "uv-lambda-2" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "uv-lambda-1", editable = "app/uv-lambda-1" },
+    { name = "uv-lambda-2", editable = "app/uv-lambda-2" },
+]
+
+[[package]]
+name = "uv-lambda-1"
+version = "0.1.0"
+source = { editable = "app/uv-lambda-1" }
+
+[[package]]
+name = "uv-lambda-2"
+version = "0.1.0"
+source = { editable = "app/uv-lambda-2" }
+dependencies = [
+    { name = "peppercorn" },
+    { name = "uv-lambda-1" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "peppercorn", specifier = ">=0.6" },
+    { name = "uv-lambda-1", editable = "app/uv-lambda-1" },
+]
