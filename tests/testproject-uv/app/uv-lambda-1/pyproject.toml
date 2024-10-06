@@ -1,5 +1,5 @@
 [project]
-name = "lambda-1"
+name = "uv-lambda-1"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 dependencies = []
 
 [project.scripts]
-lambda-1 = "lambda_1:main"
+uv-lambda-1 = "uv_lambda_1:main"
 
 [build-system]
 requires = ["hatchling"]

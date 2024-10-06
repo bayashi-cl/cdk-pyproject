@@ -51,22 +51,22 @@ def test_uv(capsys: pytest.CaptureFixture[str]) -> None:
     aws_lambda.Function(
         stack,
         "TestLambda1",
-        code=project.code("lambda-1"),
-        handler="lambda_1.lambda_handler",
+        code=project.code("uv-lambda-1"),
+        handler="uv_lambda_1.lambda_handler",
         runtime=project.runtime,
     )
     captured = capsys.readouterr()
-    assert "Successfully installed lambda-1-0.1.0" in captured.err
+    assert "Successfully installed uv-lambda-1-0.1.0" in captured.err
 
     aws_lambda.Function(
         stack,
         "TestLambda2",
-        code=project.code("lambda-2"),
-        handler="lambda_2.lambda_handler",
+        code=project.code("uv-lambda-2"),
+        handler="uv_lambda_2.lambda_handler",
         runtime=project.runtime,
     )
     captured = capsys.readouterr()
-    assert "Successfully installed lambda-1-0.1.0 lambda-2-0.1.0 peppercorn-0.6" in captured.err
+    assert "Successfully installed peppercorn-0.6 uv-lambda-1-0.1.0 uv-lambda-2-0.1.0" in captured.err
 
 
 def test_script(capsys: pytest.CaptureFixture[str]) -> None:

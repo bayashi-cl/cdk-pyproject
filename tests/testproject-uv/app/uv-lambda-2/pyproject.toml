@@ -1,20 +1,17 @@
 [project]
-name = "lambda-2"
+name = "uv-lambda-2"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "lambda-1",
-    "peppercorn>=0.6",
-]
+dependencies = ["peppercorn>=0.6", "uv-lambda-1"]
 
 [project.scripts]
-lambda-2 = "lambda_2:main"
+uv-lambda-2 = "uv_lambda_2:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.uv.sources]
-lambda-1 = { workspace = true }
+uv-lambda-1 = { workspace = true }
