@@ -22,20 +22,21 @@ def read_script(path: Path) -> StandardMetadata:
     script = path.read_text()
     pat = re.compile(r"(?m)^# /// (?P<type>[a-zA-Z0-9-]+)$\s(?P<content>(^#(| .*)$\s)+)^# ///$")
     matches = list(filter(lambda m: m.group("type") == "script", pat.finditer(script)))
-    if len(matches) != 1:
+    if len(matches) > 1:
         msg = "invalid script inline metadata"
         raise ValueError(msg)
-    content = "".join(
-        line[2:] if line.startswith("# ") else line[1:]
-        for line in matches[0].group("content").splitlines(keepends=True)
-    )
-    metadata = tomllib.loads(content)
-
-    return StandardMetadata(
-        name=path.name,
-        requires_python=SpecifierSet(r) if (r := metadata.get("requires-python")) is not None else None,
-        dependencies=[Requirement(r) for r in metadata.get("dependencies", [])],
-    )
+    if len(matches) == 1:
+        content = "".join(
+            line[2:] if line.startswith("# ") else line[1:]
+            for line in matches[0].group("content").splitlines(keepends=True)
+        )
+        metadata = tomllib.loads(content)
+        return StandardMetadata(
+            name=path.name,
+            requires_python=SpecifierSet(r) if (r := metadata.get("requires-python")) is not None else None,
+            dependencies=[Requirement(r) for r in metadata.get("dependencies", [])],
+        )
+    return StandardMetadata(name=path.stem)
 
 
 def resolve_runtime(spec: Specifier | SpecifierSet) -> aws_lambda.Runtime:
@@ -65,3 +66,11 @@ def runtime_from_metadata(metadata: StandardMetadata) -> aws_lambda.Runtime | No
     if requires_python is None:
         return None
     return resolve_runtime(requires_python)
+
+
+def runtime_from_python_version(path: str) -> aws_lambda.Runtime | None:
+    python_version_file = Path(path, ".python-version")
+    if python_version_file.exists():
+        version = python_version_file.read_text().strip()
+        return resolve_runtime(Specifier(f"=={version}"))
+    return None

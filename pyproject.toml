@@ -49,9 +49,6 @@ ignore = ["D", "ANN101", "ANN102"]
 [tool.mypy]
 strict = true
 
-[tool.pytest.ini_options]
-filterwarnings = ["ignore::SyntaxWarning"]
-
 [tool.uv]
 dev-dependencies = [
   "mypy>=1.11.2",

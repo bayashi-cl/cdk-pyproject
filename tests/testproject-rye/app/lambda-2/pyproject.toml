@@ -3,7 +3,7 @@ name = "lambda-2"
 version = "0.1.0"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
-dependencies = ["peppercorn>=0.6"]
+dependencies = ["peppercorn>=0.6", "lambda-1"]
 readme = "README.md"
 requires-python = ">= 3.11"
 
