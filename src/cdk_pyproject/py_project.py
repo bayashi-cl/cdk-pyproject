@@ -6,7 +6,13 @@ from typing import Self
 from aws_cdk import aws_lambda as lambda_
 
 import cdk_pyproject.dockerfiles
-from cdk_pyproject.utils import read_pyproject, read_script, runtime_from_metadata, runtime_from_sys
+from cdk_pyproject.utils import (
+    read_pyproject,
+    read_script,
+    runtime_from_metadata,
+    runtime_from_python_version,
+    runtime_from_sys,
+)
 
 _dockerfiles = importlib.resources.files(cdk_pyproject.dockerfiles)
 
@@ -22,7 +28,7 @@ class PyProject:
     def from_pyproject(cls, path: str, runtime: lambda_.Runtime | None = None) -> Self:
         if runtime is None:
             metadata = read_pyproject(Path(path))
-            runtime = runtime_from_metadata(metadata) or runtime_from_sys()
+            runtime = runtime_from_python_version(path) or runtime_from_metadata(metadata) or runtime_from_sys()
 
         return cls(path=path, runtime=runtime, dockerfile="pyproject.Dockerfile")
 
@@ -39,7 +45,7 @@ class PyProject:
     def from_rye(cls, path: str, runtime: lambda_.Runtime | None = None) -> Self:
         if runtime is None:
             metadata = read_pyproject(Path(path))
-            runtime = runtime_from_metadata(metadata) or runtime_from_sys()
+            runtime = runtime_from_python_version(path) or runtime_from_metadata(metadata) or runtime_from_sys()
         return cls(path=path, runtime=runtime, dockerfile="rye.Dockerfile")
 
     @classmethod
@@ -54,8 +60,7 @@ class PyProject:
     def from_uv(cls, path: str, runtime: lambda_.Runtime | None = None) -> Self:
         if runtime is None:
             metadata = read_pyproject(Path(path))
-            runtime = runtime_from_metadata(metadata) or runtime_from_sys()
-
+            runtime = runtime_from_python_version(path) or runtime_from_metadata(metadata) or runtime_from_sys()
         return cls(path=path, runtime=runtime, dockerfile="uv.Dockerfile")
 
     def code(self, package: str | None = None, *, cache_disabled: bool | None = None) -> lambda_.Code:

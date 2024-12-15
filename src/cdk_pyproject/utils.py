@@ -66,3 +66,11 @@ def runtime_from_metadata(metadata: StandardMetadata) -> aws_lambda.Runtime | No
     if requires_python is None:
         return None
     return resolve_runtime(requires_python)
+
+
+def runtime_from_python_version(path: str) -> aws_lambda.Runtime | None:
+    python_version_file = Path(path, ".python-version")
+    if python_version_file.exists():
+        version = python_version_file.read_text().strip()
+        return resolve_runtime(Specifier(f"=={version}"))
+    return None
