@@ -7,9 +7,11 @@
 #   all-features: false
 #   with-sources: false
 #   generate-hashes: false
+#   universal: false
 
 -e file:.
 -e file:app/lambda-1
+    # via lambda-2
 -e file:app/lambda-2
 peppercorn==0.6
     # via lambda-2
