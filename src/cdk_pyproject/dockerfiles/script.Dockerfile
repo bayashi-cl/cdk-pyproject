@@ -10,8 +10,7 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 WORKDIR /workspace
 
 RUN pip install --no-cache-dir pyproject-metadata==0.8.0
-
-COPY ${PACKAGE} .
+# hadolint ignore=DL3059
 RUN cat <<EOF > compile.py
 import re
 import sys
@@ -54,8 +53,8 @@ if __name__ == "__main__":
     main()
 EOF
 
-# hadolint ignore=DL3059
-RUN python3 compile.py ${PACKAGE} > requirements.txt
-RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv \
-    uv pip install -r ./requirements.txt --target /asset
-RUN cp ${PACKAGE} /asset
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+COPY ${PACKAGE} .
+RUN python3 compile.py ${PACKAGE} > /opt/requirements.txt && \
+    uv pip install --requirements /opt/requirements.txt --system

@@ -7,12 +7,14 @@ from typing import Self
 
 from aws_cdk import BundlingOptions, DockerImage, aws_lambda
 from pyproject_metadata import StandardMetadata
+from typing_extensions import deprecated
 
 from cdk_pyproject.utils import read_script, runtime_from_metadata, runtime_from_sys
 
 _dockerfiles = importlib.resources.files("cdk_pyproject.dockerfiles")
 
 
+@deprecated("Use py_project")
 class PyScript:
     def __init__(self, path: str, runtime: aws_lambda.Runtime, image: DockerImage, metadata: StandardMetadata) -> None:
         self.runtime = runtime
