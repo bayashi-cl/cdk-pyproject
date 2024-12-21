@@ -1,6 +1,6 @@
 [project]
 name = "cdk-pyproject"
-version = "0.9.0"
+version = "0.9.1"
 description = "Add your description here"
 authors = [{ name = "Masaki Kobayashi", email = "bayashi.cl@gmail.com" }]
 dependencies = ["aws-cdk-lib>=2.138.0", "pyproject-metadata>=0.8.0"]
