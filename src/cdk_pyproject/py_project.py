@@ -113,6 +113,7 @@ class PyProject:
             uv pip install \\
             --find-links /opt/wheelhouse \\
             --constraints /opt/constraints.txt \\
+            --no-sources \\
             --target /asset-output {package}
             """,
         )
