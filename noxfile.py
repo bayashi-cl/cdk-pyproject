@@ -23,17 +23,17 @@ find_python(["3.11", "3.12"])
 
 @nox.session(python=["3.11", "3.12"])
 def test(session: nox.Session) -> None:
-    session.install(".", "pytest")
+    session.install("--upgrade", ".", "pytest")
     session.run("pytest")
 
 
 @nox.session
 def type_check(session: nox.Session) -> None:
-    session.install(".", "mypy", "pytest", "nox")
+    session.install("--upgrade", ".", "mypy", "pytest", "nox")
     session.run("mypy", ".")
 
 
 @nox.session
 def lint(session: nox.Session) -> None:
-    session.install(".", "ruff")
+    session.install("--upgrade", ".", "ruff")
     session.run("ruff", "check", ".")

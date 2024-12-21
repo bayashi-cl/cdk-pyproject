@@ -1,14 +1,15 @@
 # syntax=docker/dockerfile:1
 ARG IMAGE
-ARG PACKAGE
 
 # hadolint ignore=DL3006
 FROM ${IMAGE}
 
-ARG PACKAGE=${PACKAGE}
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 WORKDIR /workspace
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 COPY . .
-RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv \
-    uv pip install ${PACKAGE} --target /asset
+RUN mkdir -p /opt/wheelhouse && \
+    touch /opt/constraints.txt && if test -e constraints.txt; then cp constraints.txt /opt/constraints.txt; fi && \
+    uv pip install . --system --find-links /opt/wheelhouse --constraints /opt/constraints.txt
